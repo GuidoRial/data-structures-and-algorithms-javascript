@@ -70,6 +70,58 @@ class LinkedList {
 
         this.size++;
     }
+
+    getAt(index) {
+        let current = this.head;
+        let count = 0;
+
+        while (current) {
+            if (count == index) {
+                console.log(current.data);
+            }
+            count++;
+            current = current.next;
+        }
+        return null;
+    }
+
+    removeAt(index) {
+        if (index > 0 && index > this.size) {
+            return;
+        }
+
+        let current = this.head;
+        let previous;
+        let count = 0;
+
+        if (index === 0) {
+            this.head = current.next;
+        } else {
+            while (count < index) {
+                count++;
+                previous = current;
+                current = current.next;
+            }
+            //When I'm at the index, make the prev point to the next one
+            previous.next = current.next;
+        }
+
+        this.size--;
+    }
+
+    clearList() {
+        this.head = null;
+        this.size = 0;
+    }
+
+    printListData() {
+        let current = this.head;
+
+        while (current) {
+            console.log(current.data);
+            current = current.next;
+        }
+    }
 }
 
 export default LinkedList;
