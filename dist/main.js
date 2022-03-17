@@ -10,6 +10,26 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/HashTables/HashTable.js":
+/*!*************************************!*\
+  !*** ./src/HashTables/HashTable.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nlet hashStringToInt = (string, tableSize) => {\n    let hash = 17;\n    for (let i = 0; i < string.length; i++) {\n        hash = (13 * hash * string.charCodeAt(i)) % tableSize;\n    }\n    return hash; // returns index\n};\n\nclass HashTable {\n    table = new Array(3333);\n    numItems = 0;\n\n    resize = () => {\n        const newTable = new Array(this.table.length * 2);\n        this.table.forEach((item) => {\n            if (item) {\n                item.forEach(([key, value]) => {\n                    const idx = hashStringToInt(key, newTable.length);\n                    if (newTable[idx]) {\n                        newTable[idx].push([key, value]);\n                    } else {\n                        newTable[idx] = [[key, value]];\n                    }\n                });\n            }\n        });\n        this.table = newTable;\n    };\n\n    setItem = (key, value) => {\n        this.numItems++;\n        const loadFactor = this.numItems / this.table.length;\n        if (loadFactor > 0.8) {\n            // resize\n            this.resize();\n        }\n\n        const idx = hashStringToInt(key, this.table.length);\n        if (this.table[idx]) {\n            this.table[idx].push([key, value]);\n        } else {\n            this.table[idx] = [[key, value]];\n        }\n    };\n\n    getItem = (key) => {\n        const idx = hashStringToInt(key, this.table.length);\n\n        if (!this.table[idx]) {\n            return null;\n        }\n\n        // O(n)\n        return this.table[idx].find((x) => x[0] === key)[1];\n    };\n}\n/*\nconst myTable = new HashTable();\nmyTable.setItem(\"firstName\", \"bob\");\nmyTable.setItem(\"lastName\", \"tim\");\nmyTable.setItem(\"age\", 5);\nmyTable.setItem(\"dob\", \"1/2/3\");\nconsole.log(myTable.getItem(\"firstName\"));\nconsole.log(myTable.getItem(\"lastName\"));\nconsole.log(myTable.getItem(\"age\"));\nconsole.log(myTable.getItem(\"dob\"));\n*/\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HashTable);\n\n\n//# sourceURL=webpack://data-structures-javascript/./src/HashTables/HashTable.js?");
+
+/***/ }),
+
+/***/ "./src/HashTables/Map/map.js":
+/*!***********************************!*\
+  !*** ./src/HashTables/Map/map.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst myMap = new Map();\nmyMap.set(0, \"zero\");\nmyMap.set(1, \"one\");\n/*\nfor (const [key, value] of myMap) {\n    console.log(`${key} = ${value}`);\n}\n\nfor (const key of myMap.keys()) {\n    console.log(key);\n}\n\nfor (const value of myMap.entries()) {\n    console.log(value);\n}\n\nfor (const [key, value] of myMap.entries()) {\n    console.log(`${key} = ${value}`);\n}\n\nconsole.log(myMap.get(0));\nconsole.log(myMap.size);\nconsole.log(myMap.has(1), myMap.has(3));\n\n*/\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (myMap);\n\n\n//# sourceURL=webpack://data-structures-javascript/./src/HashTables/Map/map.js?");
+
+/***/ }),
+
 /***/ "./src/LinkedLists/LinkedList.js":
 /*!***************************************!*\
   !*** ./src/LinkedLists/LinkedList.js ***!
@@ -36,7 +56,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _LinkedLists_LinkedList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LinkedLists/LinkedList */ \"./src/LinkedLists/LinkedList.js\");\n\n/*\nlet linkList = new LinkedList();\nconsole.log(linkList);\nlinkList.insertFirst(1);\nconsole.log(linkList);\nlinkList.insertLast(2);\nconsole.log(linkList);\nlinkList.insertLast(3);\nconsole.log(linkList);\nlinkList.insertFirst(4);\nconsole.log(linkList);\nlinkList.insertAt(5, 2);\nconsole.log(linkList);\nlinkList.getAt(3);\nlinkList.removeAt(3);\nconsole.log(linkList);\nlinkList.printListData()\nlinkList.clearList()\nconsole.log(linkList);\n\n*/\n\n//# sourceURL=webpack://data-structures-javascript/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _LinkedLists_LinkedList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LinkedLists/LinkedList */ \"./src/LinkedLists/LinkedList.js\");\n/* harmony import */ var _HashTables_HashTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HashTables/HashTable */ \"./src/HashTables/HashTable.js\");\n/* harmony import */ var _HashTables_Map_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HashTables/Map/map */ \"./src/HashTables/Map/map.js\");\n\n\n\n\n\n\n//# sourceURL=webpack://data-structures-javascript/./src/index.js?");
 
 /***/ })
 
