@@ -11,17 +11,20 @@ class MinHeap {
         this.insert = function (num) {
             heap.push(num);
             if (heap.length > 2) {
-                let idx = heap.length - 1;
+                let idx = heap.length - 1; //last index
                 while (heap[idx] < heap[Math.floor(idx / 2)]) {
+                    //while the item on the last item is smaller than its parent we have to move it up
                     if (idx >= 1) {
+                        //If we haven't reached the root node
                         [heap[Math.floor(idx / 2)], heap[idx]] = [
                             heap[idx],
                             heap[Math.floor(idx / 2)],
-                        ];
+                        ]; //ES6 destructuring syntax, we switch nodes
                         if (Math.floor(idx / 2) > 1) {
-                            idx = Math.floor(idx / 2);
+                            //If the parent node is not the root node
+                            idx = Math.floor(idx / 2); //Set the index to the parent
                         } else {
-                            break;
+                            break; //get out of the loop
                         }
                     }
                 }
@@ -31,7 +34,7 @@ class MinHeap {
         this.remove = function () {
             let smallest = heap[1];
             if (heap.length > 2) {
-                heap[1] = heap[heap.length - 1];
+                heap[1] = heap[heap.length - 1]; //set the first node to the last node, which gets moved to the first node in the array
                 heap.splice(heap.length - 1);
                 if (heap.length == 3) {
                     if (heap[1] > heap[2]) {
@@ -43,6 +46,7 @@ class MinHeap {
                 let left = 2 * i;
                 let right = 2 * i + 1;
                 while (heap[i] >= heap[left] || heap[i] >= heap[right]) {
+                    //While the root node is more or equal than the left child or its right child
                     if (heap[left] < heap[right]) {
                         [heap[i], heap[left]] = [heap[left], heap[i]];
                         i = 2 * i;
