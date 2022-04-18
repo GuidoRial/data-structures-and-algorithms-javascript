@@ -82,7 +82,7 @@ function heapSort(arr) {
     let sorted = [];
     let myHeap = new MaxHeap();
 
-    for (let i = 0; o < arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
         myHeap.insert(arr[i]);
     }
     for (let i = 0; i < arr.length; i++) {
